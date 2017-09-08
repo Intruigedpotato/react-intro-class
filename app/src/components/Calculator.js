@@ -35,10 +35,26 @@ class Calculator extends Component {
             return;}
          var result;
             switch(this.state.operator){
-                case "+": result = this.state.temp 
+                case "+": result = this.state.temp + parseInt(this.state.display, 10);
+                break;
+                case "-" : result = this.state.temp - parseInt(this.state.display, 10);
+                break;
+                case "*" : result = this.state.temp * parseInt(this.state.display, 10);
+                break;
+                case  "/" : result = this.state.temp / parseInt(this.state.display, 10);
+                break;
+                default:
+                break;
             }
+            this.setState({display: String(result)});
     }
-
+    clearDisplay(){
+this.setState({header: "Braydon's Calculator",
+display: "0",
+operator: "",
+tempNum: 0,
+resetDisplay: false})
+    }
 
 
     render() {
@@ -54,7 +70,7 @@ class Calculator extends Component {
               </span>
             </div>
       
-            <div className="btn clear"></div>
+            <div className="btn clear" onClick={()=> this.clearDisplay()}></div>
       
             <div className="btn zero" onClick={()=> this.updateDisplay("0") }></div>
             <div className="btn one" onClick={()=> this.updateDisplay("1")}></div>
